@@ -1,1 +1,0 @@
-/home/eriba/software/test_gdal_ocv/build/CMakeFiles/gdal-image-io.dir
