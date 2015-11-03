@@ -15,14 +15,14 @@ using namespace std;
 vector<Mat> planes;
 int n_bands = 0, bands_slider = 1;
 
+ Mat plane_vis;
+
 /*
  * @function on_trackbar
  * @brief Callback for trackbar
  */
 void on_trackbar( int, void* )
 {
-  Mat plane_vis;
-
   if (bands_slider == 0)
     plane_vis = planes[0];
   else
@@ -32,6 +32,13 @@ void on_trackbar( int, void* )
   //resize(plane_vis, plane_vis, Size(), 0.5, 0.5);
   //normalize(plane_vis, plane_vis, 0, 255, NORM_MINMAX, CV_8UC1);
   imshow( "Multispectral bands", plane_vis );
+}
+
+static void onMouse( int event, int x, int y, int, void* )
+{
+    if( event != EVENT_LBUTTONDOWN )
+        return;
+    cout << plane_vis.at<float>(x,y) << endl;
 }
 
 
@@ -67,6 +74,7 @@ int main( int argc, char* argv[] ){
 
   createTrackbar( "Band", "Multispectral bands", &bands_slider, n_bands, on_trackbar );
   on_trackbar( bands_slider, 0 );
+  setMouseCallback( "Multispectral bands", onMouse, 0 );
 
   waitKey(0);
   return 0;
