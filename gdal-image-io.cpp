@@ -38,7 +38,7 @@ static void onMouse( int event, int x, int y, int, void* )
 {
     if( event != EVENT_LBUTTONDOWN )
         return;
-    cout << plane_vis.at<float>(x,y) << endl;
+    cout << plane_vis.at<float>(y,x) << endl;
 }
 
 
